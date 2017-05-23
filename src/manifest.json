@@ -1,0 +1,69 @@
+{
+  "name": "Ringer",
+  "version": "2.0",
+  "manifest_version": 2,
+  "description": "A record and replay tool for even the most complicated websites.",
+  "browser_action": {
+    "default_title": "Ringer",
+    "default_icon": "icons/16-full-color.png"
+  },
+  "background": {
+    "page": "main/pages/background.html"
+  },
+  "web_accessible_resources": [
+    "main/scripts/content/injected.js",
+    "main/scripts/common/params.js",
+    "main/scripts/common/logging.js",
+    "main/scripts/content/misc.js",
+    "main/scripts/content/dom.js"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["lib/jquery-1.7.2.js",
+             "lib/underscore.js",
+             "lib/outline/jquery.dom-outline-1.0.js",
+             "main/scripts/common/scope.js",
+             "main/scripts/common/common.js",
+             "main/scripts/common/params.js",
+             "main/scripts/common/logging.js",
+             "main/scripts/content/snapshot.js",
+             "main/scripts/content/port.js", 
+             "main/scripts/content/compensation.js",
+             "main/scripts/content/dom.js",
+             "main/scripts/content/target.js",
+             "main/scripts/content/content_script.js",
+             "main/scripts/content/simple_record.js",
+             "addon/capture/content_script_capture.js",
+             "addon/copypaste/content_script_copypaste.js"
+      ],
+      "run_at": "document_start",
+      // Bug with Chrome extensions doesn't allow extension code to access
+      // frames within a page. Instead we need to load the content script
+      // into each page.
+      // http://code.google.com/p/chromium/issues/detail?id=20773 
+      "all_frames": true
+    }
+  ],
+  "omnibox": {
+    "keyword" : "webscript"
+  },
+  "icons": {
+    "16": "icons/16-full-color.png",
+    "48": "icons/48-full-color.png",
+    "128": "icons/128-full-color.png"
+  },
+  "permissions": [
+    "tabs", // used to communicate
+    "webNavigation", // used to listen to load events
+    "webRequest",
+    "webRequestBlocking",
+    "storage",
+    "unlimitedStorage",
+    "cookies",
+    "downloads",
+    "http://*/*",
+    "https://*/*",
+    "<all_urls>"
+  ]
+}
