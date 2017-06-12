@@ -20,6 +20,9 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvbf some time to start
 
+install:
+  - pip install -r dev_requirements.txt
+
 script:
   - python test/replay_button_click.py
 
