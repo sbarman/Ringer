@@ -13,7 +13,6 @@ matrix:
     - os: linux
       dist: trusty
       sudo: required
-    - os: osx
 
 before_install:
   - "export DISPLAY=:99.0"
@@ -21,6 +20,10 @@ before_install:
   - sleep 3 # give xvbf some time to start
 
 install:
+  - wget http://chromedriver.storage.googleapis.com/2.30/chromedriver_linux64.zip
+  - unzip chromedriver_linux64.zip
+  - sudo cp chromedriver /usr/local/bin/.
+  - sudo chmod +x /usr/local/bin/chromedriver
   - pip install -r dev_requirements.txt
 
 script:

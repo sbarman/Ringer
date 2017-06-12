@@ -1,6 +1,7 @@
 import threading
 import sys
 
+import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -56,6 +57,7 @@ replay_header.click()
 
 replay_button = driver.find_element_by_id('replay')
 WebDriverWait(driver, 10).until(EC.visibility_of(replay_button))
+time.sleep(1)
 
 # Start the replay
 replay_button.click()
