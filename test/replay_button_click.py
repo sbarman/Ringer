@@ -1,15 +1,15 @@
 import threading
 import sys
 
-import time
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from rootedserver import RootedHTTPServer, RootedHTTPRequestHandler
 
 # Open server at port 8080 to load test pages
 port = 8080
-server = RootedHTTPServer('./pages', ('', port), RootedHTTPRequestHandler)
+server = RootedHTTPServer('test/pages', ('', port), RootedHTTPRequestHandler)
 thread = threading.Thread(target=server.serve_forever)
 thread.daemon = True
 try:
@@ -20,7 +20,7 @@ except KeyboardInterrupt:
 
 # Load extension into Chrome
 options = webdriver.ChromeOptions()
-options.add_argument('load-extension=../src')
+options.add_argument('load-extension=src')
 
 driver = webdriver.Chrome(chrome_options=options)  # Optional argument, if not specified will search path.
 driver.get('http://localhost:8080/button.html');
@@ -59,8 +59,9 @@ WebDriverWait(driver, 10).until(EC.visibility_of(replay_button))
 
 # Start the replay
 replay_button.click()
+messages = driver.find_element_by_id('messages')
+WebDriverWait(driver, 10).until(EC.text_to_be_present_in_element((By.XPATH, "//*[@id='messages']/*[1]"), 'stopped'))
 
-time.sleep(7)
 windows = driver.window_handles
 assert len(windows) == 3
 windows.remove(extension_window)
@@ -72,6 +73,5 @@ driver.switch_to.window(replay_window)
 text_div = driver.find_element_by_id('text1')
 assert text_div.get_attribute('textContent') == 'Button clicked'
 
-input("Press Enter to quit.")
 driver.quit()
 
