@@ -25,7 +25,7 @@
     "watchify": "^3.9.0"
   },
   "scripts": {
-    "test": "./node_modules/karma/bin/karma start karma.conf.js"
+    "test": "./node_modules/karma/bin/karma start karma.conf.js --single-run"
   },
   "repository": {
     "type": "git",
