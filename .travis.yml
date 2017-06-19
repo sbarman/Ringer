@@ -2,6 +2,9 @@ language: python
 python:
   - "3.4"
 
+node_js:
+  - "6.11"
+
 git:
   depth: 3
 
@@ -27,5 +30,6 @@ install:
   - pip install -r dev_requirements.txt
 
 script:
-  - python test/replay_button_click.py
+  - python test/integration/replay_button_click.py
+  - npm test
 

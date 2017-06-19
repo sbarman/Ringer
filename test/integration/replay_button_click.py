@@ -10,7 +10,7 @@ from rootedserver import RootedHTTPServer, RootedHTTPRequestHandler
 
 # Open server at port 8080 to load test pages
 port = 8080
-server = RootedHTTPServer('test/pages', ('', port), RootedHTTPRequestHandler)
+server = RootedHTTPServer('test/integration/pages', ('', port), RootedHTTPRequestHandler)
 thread = threading.Thread(target=server.serve_forever)
 thread.daemon = True
 try:
