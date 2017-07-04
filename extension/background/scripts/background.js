@@ -36,7 +36,7 @@
     var windowLeft = focusedWindow.left - defaultWidth;
 
     chrome.windows.create({
-        url: chrome.extension.getURL('main/pages/mainpanel.html'),
+        url: chrome.extension.getURL('background/pages/mainpanel.html'),
         width: defaultWidth, 
         height: defaultHeight,
         top: windowTop,

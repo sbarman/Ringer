@@ -2,20 +2,20 @@
   "name": "Ringer",
   "version": "2.0",
   "manifest_version": 2,
-  "description": "A record and replay tool for even the most complicated websites.",
+  "description": "A record and replay tool for the modern web.",
   "browser_action": {
     "default_title": "Ringer",
     "default_icon": "icons/16-full-color.png"
   },
   "background": {
-    "page": "main/pages/background.html"
+    "page": "background/pages/background.html"
   },
   "web_accessible_resources": [
-    "main/scripts/content/injected.js",
-    "main/scripts/common/params.js",
-    "main/scripts/common/logging.js",
-    "main/scripts/content/misc.js",
-    "main/scripts/content/dom.js"
+    "content/scripts/injected.js",
+    "common/scripts/params.js",
+    "common/scripts/logging.js",
+    "content/scripts/misc.js",
+    "content/scripts/dom.js"
   ],
   "content_scripts": [
     {
@@ -23,19 +23,7 @@
       "js": ["lib/jquery-1.7.2.js",
              "lib/underscore.js",
              "lib/outline/jquery.dom-outline-1.0.js",
-             "main/scripts/common/scope.js",
-             "main/scripts/common/common.js",
-             "main/scripts/common/params.js",
-             "main/scripts/common/logging.js",
-             "main/scripts/content/snapshot.js",
-             "main/scripts/content/port.js", 
-             "main/scripts/content/compensation.js",
-             "main/scripts/content/dom.js",
-             "main/scripts/content/target.js",
-             "main/scripts/content/content_script.js",
-             "main/scripts/content/simple_record.js",
-             "main/scripts/content/capture.js",
-             "main/scripts/content/copypaste.js"
+             "build/content.js"
       ],
       "run_at": "document_start",
       // Bug with Chrome extensions doesn't allow extension code to access
